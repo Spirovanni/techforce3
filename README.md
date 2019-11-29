@@ -22,3 +22,13 @@ After you activate the environment, your command prompt will be modified to refl
 
     python manage.py migrate
 
+### Make Migrations
+
+    python manage.py makemigrations
+    
+### Create a Super User
+
+    python manage.py createsuperuser
+    
+
+
