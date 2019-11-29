@@ -14,3 +14,8 @@ After you activate the environment, your command prompt will be modified to refl
 
     django-admin startapp api
 
+###Run the Server
+
+    python manage.py runserver
+
+
