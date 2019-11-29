@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Organisation(models.Model):
@@ -7,4 +9,10 @@ class Organisation(models.Model):
 
 
 class Rating(models.Model):
-    organisation = models.ForeignKey(Organisation)
+    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+
+    class Meta:
+        unique_together = (('user', 'movie'),)
+        index_together = (('user', 'movie'),)
