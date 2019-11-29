@@ -6,5 +6,11 @@ Now that we have a virtual environment, we need to activate it.
 
 After you activate the environment, your command prompt will be modified to reflect the change.
 
+###Start Project 
 
+    django-admin startproject techforce3 .
+
+###Starting API Folder
+
+    django-admin startapp api
 
