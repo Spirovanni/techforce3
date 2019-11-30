@@ -1,5 +1,6 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
+from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from .models import Organisation, Rating
@@ -9,6 +10,7 @@ from .serializers import OrganisationSerializer, RatingSerializer
 class OrganisationViewSet(viewsets.ModelViewSet):
     serializer_class = OrganisationSerializer
     queryset = Organisation.objects.all()
+    authentication_classes = (TokenAuthentication, )
 
     @action(detail=True, methods=['POST'])
     def rate_organisation(self, request, pk=None):
@@ -16,10 +18,10 @@ class OrganisationViewSet(viewsets.ModelViewSet):
 
             organisation = Organisation.objects.get(id=pk)
             stars = request.data['stars']
-            user = User.objects.get(id=2)
-            # user = request.user
+            # user = User.objects.get(id=2)
+            user = request.user
             # print('Organisation Name', organisation.orgName)
-            # print('user', user.username)
+            print('user ', user)
 
             try:
                 rating = Rating.objects.get(user=user.id, organisation=organisation.id)
