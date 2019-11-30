@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from .models import Organisation, Rating
@@ -16,6 +17,7 @@ class OrganisationViewSet(viewsets.ModelViewSet):
     serializer_class = OrganisationSerializer
     queryset = Organisation.objects.all()
     authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated, )
 
     @action(detail=True, methods=['POST'])
     def rate_organisation(self, request, pk=None):
@@ -47,3 +49,12 @@ class RatingViewSet(viewsets.ModelViewSet):
     serializer_class = RatingSerializer
     queryset = Rating.objects.all()
     authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
+
+    def update(self, request, *args, **kwargs):
+        response = {'message': 'You cant update like that'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+
+    def create(self, request, *args, **kwargs):
+        response = {'message': 'You cant create like that'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)

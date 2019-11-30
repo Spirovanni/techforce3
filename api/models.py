@@ -21,6 +21,7 @@ class Organisation(models.Model):
         else:
             return 0
 
+
 class Rating(models.Model):
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
