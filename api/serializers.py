@@ -5,7 +5,7 @@ from . import models
 class OrganisationSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Organisation
-        fields = ['id', 'orgName', 'orgDescription']
+        fields = ['id', 'orgName', 'orgDescription', 'no_of_ratings', 'avg_ratings']
 
 
 class RatingSerializer(serializers.ModelSerializer):

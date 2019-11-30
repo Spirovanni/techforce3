@@ -19,16 +19,20 @@ class OrganisationViewSet(viewsets.ModelViewSet):
             user = User.objects.get(id=2)
             # user = request.user
             # print('Organisation Name', organisation.orgName)
-            print('user', user.username)
+            # print('user', user.username)
 
             try:
                 rating = Rating.objects.get(user=user.id, organisation=organisation.id)
                 rating.stars = stars
                 rating.save()
+                serializer = RatingSerializer(rating, many=False)
+                response = {'message': 'Ratings Updated', 'result': serializer.data}
+                return Response(response, status=status.HTTP_200_OK)
             except:
                 Rating.objects.create(user=user, organisation=organisation, stars=stars)
-            response = {'message': 'its working'}
-            return Response(response, status=status.HTTP_200_OK)
+                response = {'message': 'Ratings Created', 'result': serializer.data}
+                return Response(response, status=status.HTTP_200_OK)
+
         else:
             response = {'message': 'You need to provide stars'}
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
