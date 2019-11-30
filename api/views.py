@@ -18,9 +18,7 @@ class OrganisationViewSet(viewsets.ModelViewSet):
 
             organisation = Organisation.objects.get(id=pk)
             stars = request.data['stars']
-            # user = User.objects.get(id=2)
             user = request.user
-            # print('Organisation Name', organisation.orgName)
             print('user ', user)
 
             try:
@@ -43,3 +41,4 @@ class OrganisationViewSet(viewsets.ModelViewSet):
 class RatingViewSet(viewsets.ModelViewSet):
     serializer_class = RatingSerializer
     queryset = Rating.objects.all()
+    authentication_classes = (TokenAuthentication, )
