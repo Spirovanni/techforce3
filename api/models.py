@@ -14,5 +14,5 @@ class Rating(models.Model):
     stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 
     class Meta:
-        unique_together = (('user', 'movie'),)
-        index_together = (('user', 'movie'),)
+        unique_together = (('user', 'organisation'),)
+        index_together = (('user', 'organisation'),)
