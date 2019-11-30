@@ -4,10 +4,11 @@ from .serializers import OrganisationSerializer, RatingSerializer
 
 
 class OrganisationViewSet(viewsets.ModelViewSet):
+    serializer_class = OrganisationSerializer
     queryset = Organisation.objects.all()
-    serializer_class = (OrganisationSerializer, )
 
 
 class RatingViewSet(viewsets.ModelViewSet):
+    serializer_class = RatingSerializer
     queryset = Rating.objects.all()
-    serializer_class = (RatingSerializer, )
+
