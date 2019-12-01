@@ -1,4 +1,4 @@
-#!c:\users\cyran\dev\techforce2\techforce3\bundle_env\scripts\python.exe
+#!c:\users\cyran\dev\techforce2\bundle_django\bundle_env\scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'alembic==1.0.10','console_scripts','alembic'
 __requires__ = 'alembic==1.0.10'
 import re

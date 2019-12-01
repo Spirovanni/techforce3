@@ -1,4 +1,4 @@
-#!c:\users\cyran\dev\techforce2\techforce3\bundle_env\scripts\python.exe
+#!c:\users\cyran\dev\techforce2\bundle_django\bundle_env\scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'Mako==1.0.9','console_scripts','mako-render'
 __requires__ = 'Mako==1.0.9'
 import re
