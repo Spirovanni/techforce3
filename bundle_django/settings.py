@@ -11,21 +11,40 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import logging.config
+from datetime import timedelta
+from api.common import Config, Common
+
+# Disable Django's logging setup
+LOGGING_CONFIG = None
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', False)
+if not SECRET_KEY:
+    logging.info("Debugging is enabled.")
+
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = '&j8au*lf%i=d2niee^qlza!d3=$(5c2h^)jt(r(m!u%8+2@wlm'
+    ALLOWED_HOSTS = []
+    LOG_LEVEL = 'DEBUG'
+else:
+    DEBUG = False
+    ALLOWED_HOSTS = ["*"]
+    LOG_LEVEL = 'INFO'
+
+# Get config
+config = Config()
+CONFIG = config.get_config()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '(@nky1ty+tdwbvdu0*_g0s$y15@)-nh+q+wn^ayc(k%$$evvk1'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEFAULT_FROM_EMAIL = 'noreply@email.com'
 
 
 # Application definition
@@ -39,7 +58,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'api'
+    'api',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +70,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
 ]
 
 ROOT_URLCONF = 'bundle_django.urls'
