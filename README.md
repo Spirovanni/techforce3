@@ -1,4 +1,5 @@
-# Techforce3
+# TechForce3
+#### Version 1S
 ### Activate the Environment
 Now that we have a virtual environment, we need to activate it.
 
