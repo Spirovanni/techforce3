@@ -1,3 +1,4 @@
+Crypto
 alembic==1.0.10
 blinker==1.4
 certifi==2019.3.9

@@ -14,12 +14,33 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.conf.urls import include
-from rest_framework.authtoken.views import obtain_auth_token
+# from django.urls import path
+# from django.conf.urls import include
+# from rest_framework.authtoken.views import obtain_auth_token
+#
+# urlpatterns = [
+    # path('admin/', admin.site.urls),
+#     path('api/', include('api.urls')),
+#     path('auth/', obtain_auth_token),
+# ]
+
+# from django.conf.urls import url
+# from .auth.views import AuthView
+# from .user.views import UserView, UserSettings
+
+# urlpatterns = [
+#     url('users/current', UserView.as_view(), name='Current user'),
+    # url('auth/login', AuthView.login, name='User login'),
+    # url('auth/sign-up', AuthView.sign_up, name='Sign up a new user'),
+    # url('auth/request-pass', AuthView.request_pass, name='Send an email with password'),
+    # url('auth/reset-pass', AuthView.reset_pass, name='Reset a pasword'),
+    # url('auth/sign-out', AuthView.sign_out, name='Sign out'),
+    # url('settings/current', UserSettings.as_view(), name='User settings'),
+# ]
+
+from django.conf.urls import url, include
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-    path('auth/', obtain_auth_token),
+    url('api/', include('api.urls')),
 ]
